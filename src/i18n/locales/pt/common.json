@@ -1,0 +1,109 @@
+{
+  "app": {
+    "name": "Perimenopause TR",
+    "description": "Acompanhamento da perimenopausa e bem-estar feminino",
+    "version": "1.0.0",
+    "tagline": "Guia de Saúde Feminina"
+  },
+  "navigation": {
+    "home": "Início",
+    "symptoms": "Sintomas",
+    "tracker": "Diário",
+    "report": "Relatório",
+    "settings": "Ajustes"
+  },
+  "buttons": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "start": "Começar",
+    "continue": "Continuar",
+    "done": "Concluído",
+    "all": "Tudo",
+    "delete_all": "Excluir Tudo"
+  },
+  "states": {
+    "loading": "Carregando...",
+    "empty": "Nenhum dado encontrado.",
+    "error": "Ocorreu um erro.",
+    "success": "Sucesso"
+  },
+  "symptoms": {
+    "hot_flash": "Onda de Calor",
+    "night_sweat": "Suor Noturno",
+    "mood": "Humor",
+    "sleep": "Sono",
+    "energy": "Energia",
+    "period": "Ciclo"
+  },
+  "severity": {
+    "level_1": "Muito Leve",
+    "level_2": "Leve",
+    "level_3": "Moderado",
+    "level_4": "Intenso",
+    "level_5": "Severo"
+  },
+  "home": {
+    "greeting": "Olá,",
+    "question": "Como você está se sentindo hoje?",
+    "daily_tracking": "Acompanhamento Diário",
+    "today_logged": "Você registrou {{count}} sintoma(s) hoje.",
+    "today_empty": "Nenhum sintoma registrado hoje ainda.",
+    "tracking_tip": "O registro regular ajuda a identificar oscilações hormonais e gatilhos com clareza.",
+    "update_records": "Atualizar Registros",
+    "log_today": "Registrar Hoje",
+    "quick_tracking": "Registro Rápido de Sintomas",
+    "severity_prefix": "Intensidade:",
+    "add_symptom": "+ Registrar",
+    "daily_tip_title": "Dica do Dia",
+    "daily_tip_body": "Para aliviar ondas de calor, vista-se em camadas leves, hidrate-se com frequência e reduza o consumo de cafeína.",
+    "doctor_report_title": "Relatório Médico & Tendências",
+    "doctor_report_sub": "Acompanhe suas variações semanais",
+    "record_notice": "Este registro será salvo para Hoje ({{date}}).",
+    "select_severity": "Selecione a intensidade (1 - 5):",
+    "remove_today_record": "Remover Registro de Hoje"
+  },
+  "tracker": {
+    "today": "Hoje",
+    "past_record": "Registro Anterior",
+    "select_symptom_title": "Escolha um Sintoma",
+    "select_symptom_sub": "Toque em um sintoma para adicionar ou editar:",
+    "no_record": "Sem Registro",
+    "daily_records": "Registros de Hoje ({{count}})",
+    "empty_title": "Nenhum registro nesta data",
+    "empty_sub": "Toque nos cartões acima para adicionar sintomas.",
+    "severity_label": "Nível de Intensidade (1 - 5):",
+    "personal_note": "Nota Pessoal (Opcional):",
+    "note_placeholder": "Ex: À noite, após tomar café..."
+  },
+  "report": {
+    "days_tracked": "Dias Registrados",
+    "logged_symptoms": "Sintomas Registrados",
+    "doctor_summary_title": "Resumo para Consulta Médica",
+    "doctor_summary_sub": "Gere um relatório estruturado para compartilhar com seu médico.",
+    "share_report": "Compartilhar Relatório",
+    "symptom_distribution": "Distribuição & Intensidade dos Sintomas",
+    "symptom_distribution_sub": "Frequência e gravidade média dos seus sintomas mais recorrentes:",
+    "no_data": "Ainda não há dados suficientes para gráficos.",
+    "days_unit": "dias",
+    "avg_unit": "Média",
+    "hrt_title": "TRH & Acompanhamento Terapêutico",
+    "hrt_body": "Se você faz Terapia de Reposição Hormonal (TRH) ou usa suplementos, apresentar estes dados ajuda seu médico a ajustar as doses.",
+    "empty_share_alert": "Nenhum dado para compartilhar. Registre seus sintomas por alguns dias primeiro."
+  },
+  "settings": {
+    "cloud_section": "NUVEM & PRIVACIDADE",
+    "storage_mode": "Modo de Armazenamento",
+    "storage_sub": "Dispositivo Local (Offline-First Ativo)",
+    "safe_badge": "Seguro",
+    "preferences": "PREFERÊNCIAS",
+    "app_language": "Idioma do Aplicativo",
+    "data_section": "GERENCIAMENTO DE DADOS",
+    "clear_records": "Limpar Registros",
+    "clear_records_sub": "Excluir todos os dados de sintomas deste aparelho",
+    "clear_confirm_title": "Redefinir Dados",
+    "clear_confirm_desc": "Todos os registros de sintomas serão excluídos permanentemente. Deseja continuar?",
+    "clear_done_title": "Concluído",
+    "clear_done_desc": "Todos os registros foram excluídos com sucesso.",
+    "disclaimer": "Este aplicativo destina-se apenas ao acompanhamento pessoal e não substitui diagnósticos ou tratamentos médicos."
+  }
+}

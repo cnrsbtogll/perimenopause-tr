@@ -41,12 +41,12 @@ const SYMPTOM_METAS: SymptomMeta[] = [
   { key: 'period', titleKey: 'symptoms.period', icon: 'calendar', color: theme.colors.mint, bgColor: theme.colors.mintSoft },
 ];
 
-const SEVERITY_LEVELS = [
-  { level: 1, label: 'Hafif' },
-  { level: 2, label: 'Düşük' },
-  { level: 3, label: 'Orta' },
-  { level: 4, label: 'Yüksek' },
-  { level: 5, label: 'Şiddetli' },
+const SEVERITY_LEVEL_KEYS = [
+  { level: 1, key: 'severity.level_1' },
+  { level: 2, key: 'severity.level_2' },
+  { level: 3, key: 'severity.level_3' },
+  { level: 4, key: 'severity.level_4' },
+  { level: 5, key: 'severity.level_5' },
 ];
 
 export default function TrackerScreen() {
@@ -120,10 +120,10 @@ export default function TrackerScreen() {
 
         <View style={styles.dateCenter}>
           <Text style={styles.dateTitle}>
-            {isToday ? 'Bugün' : selectedDate}
+            {isToday ? t('tracker.today') : selectedDate}
           </Text>
           <Text style={styles.dateSubtitle}>
-            {isToday ? selectedDate : 'Geçmiş Kayıt'}
+            {isToday ? selectedDate : t('tracker.past_record')}
           </Text>
         </View>
 
@@ -141,9 +141,9 @@ export default function TrackerScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.sectionTitle}>Semptom Seçin</Text>
+        <Text style={styles.sectionTitle}>{t('tracker.select_symptom_title')}</Text>
         <Text style={styles.sectionSubtitle}>
-          Kaydetmek veya güncellemek istediğiniz semptoma dokunun:
+          {t('tracker.select_symptom_sub')}
         </Text>
 
         {/* Symptoms Grid */}
@@ -169,11 +169,11 @@ export default function TrackerScreen() {
                 {isLogged ? (
                   <View style={[styles.severityBadge, { backgroundColor: meta.color }]}>
                     <Text style={styles.severityBadgeText}>
-                      Şiddet {logged?.severity}/5
+                      {logged?.severity}/5
                     </Text>
                   </View>
                 ) : (
-                  <Text style={styles.notLoggedText}>Kayıt Yok</Text>
+                  <Text style={styles.notLoggedText}>{t('tracker.no_record')}</Text>
                 )}
               </TouchableOpacity>
             );
@@ -183,14 +183,14 @@ export default function TrackerScreen() {
         {/* Active Logged List for this day */}
         <View style={styles.summarySection}>
           <Text style={styles.sectionTitle}>
-            Günün Kayıtları ({selectedDateRecord?.symptoms.length || 0})
+            {t('tracker.daily_records', { count: selectedDateRecord?.symptoms.length || 0 })}
           </Text>
           {(!selectedDateRecord || selectedDateRecord.symptoms.length === 0) ? (
             <View style={styles.emptyCard}>
               <Ionicons name="calendar-outline" size={32} color={theme.colors.subtle} />
-              <Text style={styles.emptyTitle}>Bu tarihte kayıt bulunmuyor</Text>
+              <Text style={styles.emptyTitle}>{t('tracker.empty_title')}</Text>
               <Text style={styles.emptySub}>
-                Yukarıdaki kartlara dokunarak günün semptomlarını ekleyebilirsiniz.
+                {t('tracker.empty_sub')}
               </Text>
             </View>
           ) : (
@@ -260,9 +260,9 @@ export default function TrackerScreen() {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.modalSectionLabel}>Şiddet Derecesi (1 - 5):</Text>
+            <Text style={styles.modalSectionLabel}>{t('tracker.severity_label')}</Text>
             <View style={styles.severitySelector}>
-              {SEVERITY_LEVELS.map(({ level, label }) => {
+              {SEVERITY_LEVEL_KEYS.map(({ level, key }) => {
                 const isSelected = selectedSeverity === level;
                 return (
                   <TouchableOpacity
@@ -291,17 +291,17 @@ export default function TrackerScreen() {
                         isSelected && { color: '#FFFFFF' },
                       ]}
                     >
-                      {label}
+                      {t(key)}
                     </Text>
                   </TouchableOpacity>
                 );
               })}
             </View>
 
-            <Text style={styles.modalSectionLabel}>Kişisel Not (Opsiyonel):</Text>
+            <Text style={styles.modalSectionLabel}>{t('tracker.personal_note')}</Text>
             <TextInput
               style={styles.noteInput}
-              placeholder="Örn: Akşam saatlerinde, kahve içtikten sonra..."
+              placeholder={t('tracker.note_placeholder')}
               placeholderTextColor={theme.colors.subtle}
               value={symptomNote}
               onChangeText={setSymptomNote}
@@ -316,7 +316,7 @@ export default function TrackerScreen() {
                 onPress={handleSaveSymptom}
                 activeOpacity={0.8}
               >
-                <Text style={styles.modalSaveButtonText}>Kaydet</Text>
+                <Text style={styles.modalSaveButtonText}>{t('buttons.save')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -560,6 +560,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: theme.colors.muted,
     marginTop: 2,
+    textAlign: 'center',
   },
   noteInput: {
     backgroundColor: theme.colors.background,

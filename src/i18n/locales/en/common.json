@@ -1,8 +1,9 @@
 {
   "app": {
     "name": "Perimenopause TR",
-    "description": "Perimenopause & women wellness tracking",
-    "version": "1.0.0"
+    "description": "Perimenopause and women wellness tracking",
+    "version": "1.0.0",
+    "tagline": "Women's Health Guide"
   },
   "navigation": {
     "home": "Home",
@@ -16,7 +17,9 @@
     "cancel": "Cancel",
     "start": "Start",
     "continue": "Continue",
-    "done": "Done"
+    "done": "Done",
+    "all": "All",
+    "delete_all": "Delete All"
   },
   "states": {
     "loading": "Loading...",
@@ -31,5 +34,76 @@
     "sleep": "Sleep Quality",
     "energy": "Energy Level",
     "period": "Cycle"
+  },
+  "severity": {
+    "level_1": "Very Mild",
+    "level_2": "Mild",
+    "level_3": "Moderate",
+    "level_4": "High",
+    "level_5": "Severe"
+  },
+  "home": {
+    "greeting": "Hello,",
+    "question": "How are you feeling today?",
+    "daily_tracking": "Daily Tracking",
+    "today_logged": "You logged {{count}} symptoms today.",
+    "today_empty": "No symptoms logged yet today.",
+    "tracking_tip": "Regular tracking helps you better understand your hormonal fluctuations and triggers.",
+    "update_records": "Update Records",
+    "log_today": "Log Today",
+    "quick_tracking": "Quick Symptom Log",
+    "severity_prefix": "Severity:",
+    "add_symptom": "+ Log",
+    "daily_tip_title": "Tip of the Day",
+    "daily_tip_body": "To ease hot flashes, try dressing in layers, drinking plenty of water, and balancing your caffeine intake.",
+    "doctor_report_title": "Doctor & Trend Report",
+    "doctor_report_sub": "Review your weekly changes",
+    "record_notice": "This entry will be saved for Today ({{date}}).",
+    "select_severity": "Select severity level (1 - 5):",
+    "remove_today_record": "Remove Today's Entry"
+  },
+  "tracker": {
+    "today": "Today",
+    "past_record": "Past Record",
+    "select_symptom_title": "Select Symptom",
+    "select_symptom_sub": "Tap a symptom to record or update:",
+    "no_record": "No Record",
+    "daily_records": "Today's Records ({{count}})",
+    "empty_title": "No records for this date",
+    "empty_sub": "Tap the cards above to add today's symptoms.",
+    "severity_label": "Severity Level (1 - 5):",
+    "personal_note": "Personal Note (Optional):",
+    "note_placeholder": "E.g. In the evening, after coffee..."
+  },
+  "report": {
+    "days_tracked": "Days Tracked",
+    "logged_symptoms": "Logged Symptoms",
+    "doctor_summary_title": "Doctor Consultation Summary",
+    "doctor_summary_sub": "Generate a structured symptom summary to share with your physician.",
+    "share_report": "Share Doctor Report",
+    "symptom_distribution": "Symptom Distribution & Severity",
+    "symptom_distribution_sub": "Frequency and average intensity of your most common symptoms:",
+    "no_data": "No chart data yet.",
+    "days_unit": "days",
+    "avg_unit": "Avg.",
+    "hrt_title": "HRT & Therapy Tracking",
+    "hrt_body": "If you are using Hormone Replacement Therapy (HRT) or dietary supplements, sharing symptom changes with your doctor helps make informed dosage decisions.",
+    "empty_share_alert": "No symptom records to share. Please log records for a few days first."
+  },
+  "settings": {
+    "cloud_section": "CLOUD & PRIVACY",
+    "storage_mode": "Storage Mode",
+    "storage_sub": "Local Device (Offline-First Active)",
+    "safe_badge": "Secure",
+    "preferences": "PREFERENCES",
+    "app_language": "App Language",
+    "data_section": "DATA MANAGEMENT",
+    "clear_records": "Clear Records",
+    "clear_records_sub": "Delete all symptom data from device",
+    "clear_confirm_title": "Reset Data",
+    "clear_confirm_desc": "All symptom records on your device will be deleted. This action cannot be undone. Are you sure?",
+    "clear_done_title": "Completed",
+    "clear_done_desc": "All records have been successfully cleared.",
+    "disclaimer": "This app is for informational and self-tracking purposes only and does not substitute professional medical diagnosis or treatment."
   }
 }

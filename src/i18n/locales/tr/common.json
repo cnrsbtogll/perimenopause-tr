@@ -2,7 +2,8 @@
   "app": {
     "name": "Perimenopause TR",
     "description": "Perimenopoz ve kadın sağlık takibi",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "tagline": "Kadın Sağlığı Rehberi"
   },
   "navigation": {
     "home": "Ana Sayfa",
@@ -16,7 +17,9 @@
     "cancel": "İptal",
     "start": "Başla",
     "continue": "Devam Et",
-    "done": "Tamamlandı"
+    "done": "Tamamlandı",
+    "all": "Tümü",
+    "delete_all": "Tümünü Sil"
   },
   "states": {
     "loading": "Yükleniyor...",
@@ -31,5 +34,76 @@
     "sleep": "Uyku",
     "energy": "Enerji",
     "period": "Döngü"
+  },
+  "severity": {
+    "level_1": "Hafif",
+    "level_2": "Düşük",
+    "level_3": "Orta",
+    "level_4": "Yüksek",
+    "level_5": "Şiddetli"
+  },
+  "home": {
+    "greeting": "Merhaba,",
+    "question": "Bugün nasıl hissediyorsun?",
+    "daily_tracking": "Günlük Takip",
+    "today_logged": "Bugün {{count}} semptom kaydettiniz.",
+    "today_empty": "Bugün henüz bir kayıt girmediniz.",
+    "tracking_tip": "Düzenli takip, hormonal dalgalanmalarınızı ve tetikleyicilerinizi daha net anlamanızı sağlar.",
+    "update_records": "Kayıtları Güncelle",
+    "log_today": "Bugünü Kaydet",
+    "quick_tracking": "Hızlı Semptom Takibi",
+    "severity_prefix": "Şiddet:",
+    "add_symptom": "+ Kaydet",
+    "daily_tip_title": "Günün İpucu",
+    "daily_tip_body": "Sıcak dalgalarını hafifletmek için kat kat giyinmeyi, bol su tüketmeyi ve kafein alımını dengelemeyi deneyebilirsiniz.",
+    "doctor_report_title": "Doktor & Trend Raporu",
+    "doctor_report_sub": "Haftalık değişimlerinizi inceleyin",
+    "record_notice": "Bu kayıt Bugün ({{date}}) için günlüğünüze işlenecektir.",
+    "select_severity": "Şiddet derecesini seçin (1 - 5):",
+    "remove_today_record": "Bugünkü Kaydı Kaldır"
+  },
+  "tracker": {
+    "today": "Bugün",
+    "past_record": "Geçmiş Kayıt",
+    "select_symptom_title": "Semptom Seçin",
+    "select_symptom_sub": "Kaydetmek veya güncellemek istediğiniz semptoma dokunun:",
+    "no_record": "Kayıt Yok",
+    "daily_records": "Günün Kayıtları ({{count}})",
+    "empty_title": "Bu tarihte kayıt bulunmuyor",
+    "empty_sub": "Yukarıdaki kartlara dokunarak günün semptomlarını ekleyebilirsiniz.",
+    "severity_label": "Şiddet Derecesi (1 - 5):",
+    "personal_note": "Kişisel Not (Opsiyonel):",
+    "note_placeholder": "Örn: Akşam saatlerinde, kahve içtikten sonra..."
+  },
+  "report": {
+    "days_tracked": "Takip Edilen Gün",
+    "logged_symptoms": "Kayıtlı Semptom",
+    "doctor_summary_title": "Doktor Muayene Özeti",
+    "doctor_summary_sub": "Hekiminizle paylaşabileceğiniz yapılandırılmış semptom özeti oluşturun.",
+    "share_report": "Raporu Paylaş / İlet",
+    "symptom_distribution": "Semptom Dağılımı ve Yoğunluk",
+    "symptom_distribution_sub": "En sık karşılaştığınız durumların frekansı ve ortalama şiddetleri:",
+    "no_data": "Henüz grafik verisi oluşmadı.",
+    "days_unit": "gün",
+    "avg_unit": "Ort.",
+    "hrt_title": "HRT ve Tedavi Takibi",
+    "hrt_body": "Hormon Replasman Tedavisi (HRT) veya takviye edici gıda kullanıyorsanız, semptom değişimlerini doktorunuza bu verilerle sunarak doz ayarlamasında doğru karar alabilirsiniz.",
+    "empty_share_alert": "Paylaşılacak semptom kaydı bulunmuyor. Önce birkaç günlük kayıt ekleyin."
+  },
+  "settings": {
+    "cloud_section": "BULUT & GİZLİLİK",
+    "storage_mode": "Depolama Modu",
+    "storage_sub": "Yerel Cihaz (Offline-First Aktif)",
+    "safe_badge": "Güvenli",
+    "preferences": "TERCİHLER",
+    "app_language": "Uygulama Dili",
+    "data_section": "VERİ YÖNETİMİ",
+    "clear_records": "Kayıtları Temizle",
+    "clear_records_sub": "Cihazdaki tüm semptom verilerini sil",
+    "clear_confirm_title": "Verileri Sıfırla",
+    "clear_confirm_desc": "Cihazınızdaki tüm semptom kayıtları silinecektir. Bu işlem geri alınamaz. Emin misiniz?",
+    "clear_done_title": "Tamamlandı",
+    "clear_done_desc": "Tüm kayıtlar başarıyla temizlendi.",
+    "disclaimer": "Bu uygulama bilgilendirme ve kişisel takip amaçlıdır, tıbbi tanı ve tedavi yerine geçmez."
   }
 }

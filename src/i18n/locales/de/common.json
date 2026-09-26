@@ -1,0 +1,109 @@
+{
+  "app": {
+    "name": "Perimenopause TR",
+    "description": "Perimenopause und Frauengesundheitstracking",
+    "version": "1.0.0",
+    "tagline": "Leitfaden für Frauengesundheit"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "symptoms": "Symptome",
+    "tracker": "Tracker",
+    "report": "Bericht",
+    "settings": "Einstellungen"
+  },
+  "buttons": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "start": "Starten",
+    "continue": "Weiter",
+    "done": "Fertig",
+    "all": "Alle",
+    "delete_all": "Alles löschen"
+  },
+  "states": {
+    "loading": "Laden...",
+    "empty": "Keine Daten gefunden.",
+    "error": "Ein Fehler ist aufgetreten.",
+    "success": "Erfolgreich"
+  },
+  "symptoms": {
+    "hot_flash": "Hitzewallung",
+    "night_sweat": "Nachtschweiß",
+    "mood": "Stimmung",
+    "sleep": "Schlaf",
+    "energy": "Energie",
+    "period": "Zyklus"
+  },
+  "severity": {
+    "level_1": "Sehr leicht",
+    "level_2": "Leicht",
+    "level_3": "Mäßig",
+    "level_4": "Stark",
+    "level_5": "Sehr stark"
+  },
+  "home": {
+    "greeting": "Hallo,",
+    "question": "Wie fühlst du dich heute?",
+    "daily_tracking": "Tägliches Tracking",
+    "today_logged": "Heute hast du {{count}} Symptom(e) erfasst.",
+    "today_empty": "Heute wurden noch keine Symptome erfasst.",
+    "tracking_tip": "Regelmäßiges Erfassen hilft dir, hormonelle Schwankungen und Trigger besser zu verstehen.",
+    "update_records": "Einträge anpassen",
+    "log_today": "Heute erfassen",
+    "quick_tracking": "Schnellerfassung",
+    "severity_prefix": "Intensität:",
+    "add_symptom": "+ Erfassen",
+    "daily_tip_title": "Tipp des Tages",
+    "daily_tip_body": "Um Hitzewallungen zu lindern, trage Kleidung im Zwiebellook, trinke ausreichend Wasser und achte auf deinen Kaffeekonsum.",
+    "doctor_report_title": "Arzt- & Trendbericht",
+    "doctor_report_sub": "Wöchentliche Veränderungen im Überblick",
+    "record_notice": "Dieser Eintrag wird für Heute ({{date}}) gespeichert.",
+    "select_severity": "Wähle die Intensität (1 - 5):",
+    "remove_today_record": "Heutigen Eintrag entfernen"
+  },
+  "tracker": {
+    "today": "Heute",
+    "past_record": "Vergangener Eintrag",
+    "select_symptom_title": "Symptom wählen",
+    "select_symptom_sub": "Tippe auf ein Symptom, um es zu erfassen oder anzupassen:",
+    "no_record": "Kein Eintrag",
+    "daily_records": "Einträge von heute ({{count}})",
+    "empty_title": "Keine Einträge an diesem Datum",
+    "empty_sub": "Tippe oben auf die Karten, um Symptome hinzuzufügen.",
+    "severity_label": "Intensitätsstufe (1 - 5):",
+    "personal_note": "Persönliche Notiz (Optional):",
+    "note_placeholder": "Z.B. Am Abend nach dem Kaffee..."
+  },
+  "report": {
+    "days_tracked": "Erfasste Tage",
+    "logged_symptoms": "Erfasste Symptome",
+    "doctor_summary_title": "Arztgesprächs-Übersicht",
+    "doctor_summary_sub": "Erstelle eine strukturierte Zusammenfassung für dein nächstes Arztgespräch.",
+    "share_report": "Bericht teilen",
+    "symptom_distribution": "Symptomverteilung & Intensität",
+    "symptom_distribution_sub": "Häufigkeit und durchschnittliche Stärke deiner häufigsten Symptome:",
+    "no_data": "Noch keine Diagrammdaten verfügbar.",
+    "days_unit": "Tage",
+    "avg_unit": "Ø",
+    "hrt_title": "HRT & Therapietracking",
+    "hrt_body": "Wenn du eine Hormonersatztherapie (HRT) machst oder Nahrungsergänzungsmittel nimmst, helfen diese Daten deinem Arzt bei der optimalen Dosierung.",
+    "empty_share_alert": "Keine Einträge zum Teilen vorhanden. Bitte erfasse zuerst Daten für einige Tage."
+  },
+  "settings": {
+    "cloud_section": "CLOUD & DATENSCHUTZ",
+    "storage_mode": "Speichermodus",
+    "storage_sub": "Lokales Gerät (Offline-First aktiv)",
+    "safe_badge": "Sicher",
+    "preferences": "EINSTELLUNGEN",
+    "app_language": "App-Sprache",
+    "data_section": "DATENVERWALTUNG",
+    "clear_records": "Einträge löschen",
+    "clear_records_sub": "Alle Symptomdaten von diesem Gerät entfernen",
+    "clear_confirm_title": "Daten zurücksetzen",
+    "clear_confirm_desc": "Alle Symptomeinträge werden unwiderruflich gelöscht. Fortfahren?",
+    "clear_done_title": "Fertig",
+    "clear_done_desc": "Alle Einträge wurden erfolgreich gelöscht.",
+    "disclaimer": "Diese App dient der persönlichen Dokumentation und ersetzt keine ärztliche Diagnose oder Behandlung."
+  }
+}

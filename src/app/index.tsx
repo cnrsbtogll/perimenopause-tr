@@ -23,12 +23,12 @@ const QUICK_SYMPTOMS: Array<{
   { type: 'energy', titleKey: 'symptoms.energy', icon: 'flash', color: theme.colors.peach, bgColor: theme.colors.peachSoft },
 ];
 
-const SEVERITY_LEVELS = [
-  { level: 1, label: 'Hafif' },
-  { level: 2, label: 'Düşük' },
-  { level: 3, label: 'Orta' },
-  { level: 4, label: 'Yüksek' },
-  { level: 5, label: 'Şiddetli' },
+const SEVERITY_LEVEL_KEYS = [
+  { level: 1, key: 'severity.level_1' },
+  { level: 2, key: 'severity.level_2' },
+  { level: 3, key: 'severity.level_3' },
+  { level: 4, key: 'severity.level_4' },
+  { level: 5, key: 'severity.level_5' },
 ];
 
 export default function HomeScreen() {
@@ -63,7 +63,17 @@ export default function HomeScreen() {
   const todayFormatted = React.useMemo(() => {
     try {
       const now = new Date();
-      const locale = i18n.language === 'tr' ? 'tr-TR' : 'en-US';
+      const lang = i18n.language || 'tr';
+      const localeMap: Record<string, string> = {
+        tr: 'tr-TR',
+        en: 'en-US',
+        fr: 'fr-FR',
+        de: 'de-DE',
+        nl: 'nl-NL',
+        pt: 'pt-PT',
+        el: 'el-GR',
+      };
+      const locale = localeMap[lang] || 'tr-TR';
       return now.toLocaleDateString(locale, {
         weekday: 'long',
         day: 'numeric',
@@ -84,23 +94,23 @@ export default function HomeScreen() {
         {/* Header Greeting */}
         <View style={styles.header}>
           <Text style={styles.dateText}>{todayFormatted}</Text>
-          <Text style={styles.title}>Merhaba,</Text>
-          <Text style={styles.subtitle}>Bugün nasıl hissediyorsun?</Text>
+          <Text style={styles.title}>{t('home.greeting')}</Text>
+          <Text style={styles.subtitle}>{t('home.question')}</Text>
         </View>
 
         {/* Status Banner */}
         <View style={styles.heroCard}>
           <View style={styles.heroBadge}>
             <Ionicons name="sparkles" size={16} color={theme.colors.accent} />
-            <Text style={styles.heroBadgeText}>Günlük Takip</Text>
+            <Text style={styles.heroBadgeText}>{t('home.daily_tracking')}</Text>
           </View>
           <Text style={styles.heroTitle}>
             {loggedSymptomsCount > 0
-              ? `Bugün ${loggedSymptomsCount} semptom kaydettiniz.`
-              : 'Bugün henüz bir kayıt girmediniz.'}
+              ? t('home.today_logged', { count: loggedSymptomsCount })
+              : t('home.today_empty')}
           </Text>
           <Text style={styles.heroDescription}>
-            Düzenli takip, hormonal dalgalanmalarınızı ve tetikleyicilerinizi daha net anlamanızı sağlar.
+            {t('home.tracking_tip')}
           </Text>
           <TouchableOpacity
             style={styles.heroButton}
@@ -108,7 +118,7 @@ export default function HomeScreen() {
             activeOpacity={0.8}
           >
             <Text style={styles.heroButtonText}>
-              {loggedSymptomsCount > 0 ? 'Kayıtları Güncelle' : 'Bugünü Kaydet'}
+              {loggedSymptomsCount > 0 ? t('home.update_records') : t('home.log_today')}
             </Text>
             <Ionicons name="arrow-forward" size={16} color="#FFFFFF" />
           </TouchableOpacity>
@@ -116,9 +126,9 @@ export default function HomeScreen() {
 
         {/* Quick Log Chips */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Hızlı Semptom Takibi</Text>
+          <Text style={styles.sectionTitle}>{t('home.quick_tracking')}</Text>
           <TouchableOpacity onPress={() => router.push('/tracker')}>
-            <Text style={styles.sectionLink}>Tümü</Text>
+            <Text style={styles.sectionLink}>{t('buttons.all')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -144,11 +154,11 @@ export default function HomeScreen() {
                 {isLogged ? (
                   <View style={[styles.statusPill, { backgroundColor: item.bgColor }]}>
                     <Text style={[styles.statusPillText, { color: item.color }]}>
-                      Şiddet: {loggedEntry?.severity}/5
+                      {t('home.severity_prefix')} {loggedEntry?.severity}/5
                     </Text>
                   </View>
                 ) : (
-                  <Text style={styles.unloggedText}>+ Kaydet</Text>
+                  <Text style={styles.unloggedText}>{t('home.add_symptom')}</Text>
                 )}
               </TouchableOpacity>
             );
@@ -159,10 +169,10 @@ export default function HomeScreen() {
         <View style={styles.insightCard}>
           <View style={styles.insightHeader}>
             <Ionicons name="bulb-outline" size={20} color={theme.colors.peach} />
-            <Text style={styles.insightTitle}>Günün İpucu</Text>
+            <Text style={styles.insightTitle}>{t('home.daily_tip_title')}</Text>
           </View>
           <Text style={styles.insightBody}>
-            Sıcak dalgalarını hafifletmek için kat kat giyinmeyi, bol su tüketmeyi ve kafein alımını dengelemeyi deneyebilirsiniz.
+            {t('home.daily_tip_body')}
           </Text>
         </View>
 
@@ -176,9 +186,9 @@ export default function HomeScreen() {
             <View style={styles.reportIconCircle}>
               <Ionicons name="document-text" size={22} color={theme.colors.accent} />
             </View>
-            <View>
-              <Text style={styles.reportShortcutTitle}>Doktor & Trend Raporu</Text>
-              <Text style={styles.reportShortcutSub}>Haftalık değişimlerinizi inceleyin</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.reportShortcutTitle}>{t('home.doctor_report_title')}</Text>
+              <Text style={styles.reportShortcutSub}>{t('home.doctor_report_sub')}</Text>
             </View>
           </View>
           <Ionicons name="chevron-forward" size={20} color={theme.colors.subtle} />
@@ -221,14 +231,14 @@ export default function HomeScreen() {
             <View style={styles.todayNoticeBanner}>
               <Ionicons name="calendar-outline" size={14} color={theme.colors.accent} />
               <Text style={styles.todayNoticeText}>
-                Bu kayıt <Text style={styles.todayNoticeBold}>Bugün ({todayFormatted})</Text> için günlüğünüze işlenecektir.
+                {t('home.record_notice', { date: todayFormatted })}
               </Text>
             </View>
 
-            <Text style={styles.modalSubtitle}>Şiddet derecesini seçin (1 - 5):</Text>
+            <Text style={styles.modalSubtitle}>{t('home.select_severity')}</Text>
 
             <View style={styles.severityRow}>
-              {SEVERITY_LEVELS.map(({ level, label }) => {
+              {SEVERITY_LEVEL_KEYS.map(({ level, key }) => {
                 const isSelected =
                   selectedDateRecord?.symptoms.find((s) => s.type === activeQuickSymptom?.type)
                     ?.severity === level;
@@ -260,7 +270,7 @@ export default function HomeScreen() {
                         isSelected && { color: '#FFFFFF' },
                       ]}
                     >
-                      {label}
+                      {t(key)}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -274,7 +284,7 @@ export default function HomeScreen() {
                 activeOpacity={0.7}
               >
                 <Ionicons name="trash-outline" size={16} color={theme.colors.coral} />
-                <Text style={styles.removeBtnText}>Bugünkü Kaydı Kaldır</Text>
+                <Text style={styles.removeBtnText}>{t('home.remove_today_record')}</Text>
               </TouchableOpacity>
             ) : null}
           </TouchableOpacity>
@@ -471,6 +481,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.md,
+    flex: 1,
   },
   reportIconCircle: {
     width: 42,
@@ -532,9 +543,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: theme.colors.accent,
     flex: 1,
-  },
-  todayNoticeBold: {
-    fontWeight: '700',
+    lineHeight: 16,
   },
   modalSubtitle: {
     fontSize: 13,
@@ -566,6 +575,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: theme.colors.muted,
     marginTop: 2,
+    textAlign: 'center',
   },
   removeBtn: {
     flexDirection: 'row',

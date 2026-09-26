@@ -1,0 +1,109 @@
+{
+  "app": {
+    "name": "Perimenopause TR",
+    "description": "Perimenopauze en welzijnsdagboek voor vrouwen",
+    "version": "1.0.0",
+    "tagline": "Gezondheidsgids voor vrouwen"
+  },
+  "navigation": {
+    "home": "Home",
+    "symptoms": "Symptomen",
+    "tracker": "Dagboek",
+    "report": "Rapport",
+    "settings": "Instellingen"
+  },
+  "buttons": {
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "start": "Starten",
+    "continue": "Doorgaan",
+    "done": "Klaar",
+    "all": "Alles",
+    "delete_all": "Alles verwijderen"
+  },
+  "states": {
+    "loading": "Laden...",
+    "empty": "Geen gegevens gevonden.",
+    "error": "Er is een fout opgetreden.",
+    "success": "Succesvol"
+  },
+  "symptoms": {
+    "hot_flash": "Opvlieger",
+    "night_sweat": "Nachtelijk zweten",
+    "mood": "Stemmingswisseling",
+    "sleep": "Slaapkwaliteit",
+    "energy": "Energieniveau",
+    "period": "Cyclus"
+  },
+  "severity": {
+    "level_1": "Zeer licht",
+    "level_2": "Licht",
+    "level_3": "Matig",
+    "level_4": "Hoog",
+    "level_5": "Hevig"
+  },
+  "home": {
+    "greeting": "Hallo,",
+    "question": "Hoe voel je je vandaag?",
+    "daily_tracking": "Dagelijkse opvolging",
+    "today_logged": "Je hebt vandaag {{count}} symptoom/symptomen vastgelegd.",
+    "today_empty": "Vandaag nog geen symptomen vastgelegd.",
+    "tracking_tip": "Regelmatig bijhouden geeft inzicht in hormonale schommelingen en triggers.",
+    "update_records": "Inzendingen bijwerken",
+    "log_today": "Vandaag registreren",
+    "quick_tracking": "Snelle symptoomregistratie",
+    "severity_prefix": "Ernst:",
+    "add_symptom": "+ Toevoegen",
+    "daily_tip_title": "Tip van de dag",
+    "daily_tip_body": "Draag kleding in laagjes, drink voldoende water en matig cafeïne om opvliegers te verlichten.",
+    "doctor_report_title": "Dokters- & Trendrapport",
+    "doctor_report_sub": "Bekijk wekelijkse ontwikkelingen",
+    "record_notice": "Deze invoer wordt opgeslagen voor Vandaag ({{date}}).",
+    "select_severity": "Kies de intensiteit (1 - 5):",
+    "remove_today_record": "Verwijder de invoer van vandaag"
+  },
+  "tracker": {
+    "today": "Vandaag",
+    "past_record": "Eerdere invoer",
+    "select_symptom_title": "Kies een symptoom",
+    "select_symptom_sub": "Tik op een symptoom om toe te voegen of aan te passen:",
+    "no_record": "Geen registratie",
+    "daily_records": "Registraties van vandaag ({{count}})",
+    "empty_title": "Geen registraties voor deze datum",
+    "empty_sub": "Tik hierboven op een kaart om symptomen toe te voegen.",
+    "severity_label": "Intensiteitsniveau (1 - 5):",
+    "personal_note": "Persoonlijke notitie (Optioneel):",
+    "note_placeholder": "Bijv. 's Avonds, na een kop koffie..."
+  },
+  "report": {
+    "days_tracked": "Dagen gevolgd",
+    "logged_symptoms": "Geregistreerde symptomen",
+    "doctor_summary_title": "Overzicht voor de arts",
+    "doctor_summary_sub": "Genereer een gestructureerd overzicht om met je arts te delen.",
+    "share_report": "Rapport delen",
+    "symptom_distribution": "Verdeling & Ernst van symptomen",
+    "symptom_distribution_sub": "Frequentie en gemiddelde ernst van je meest voorkomende symptomen:",
+    "no_data": "Nog geen grafiekgegevens beschikbaar.",
+    "days_unit": "dgn",
+    "avg_unit": "Gem.",
+    "hrt_title": "HST & Behandeling",
+    "hrt_body": "Als je hormoontherapie (HST) gebruikt of supplementen neemt, helpt het delen van deze gegevens je arts bij een nauwkeurige dosering.",
+    "empty_share_alert": "Geen gegevens om te delen. Houd eerst enkele dagen je symptomen bij."
+  },
+  "settings": {
+    "cloud_section": "CLOUD & PRIVACY",
+    "storage_mode": "Opslagmodus",
+    "storage_sub": "Lokaal apparaat (Offline-First actief)",
+    "safe_badge": "Beveiligd",
+    "preferences": "VOORKEUREN",
+    "app_language": "Taal van de app",
+    "data_section": "GEGEVENSBEHEER",
+    "clear_records": "Gegevens wissen",
+    "clear_records_sub": "Verwijder alle symptoomgegevens van dit apparaat",
+    "clear_confirm_title": "Gegevens resetten",
+    "clear_confirm_desc": "Alle symptoomregistraties worden definitief gewist. Weet je het zeker?",
+    "clear_done_title": "Voltooid",
+    "clear_done_desc": "Alle gegevens zijn succesvol gewist.",
+    "disclaimer": "Deze app is uitsluitend bedoeld voor persoonlijk inzicht en vervangt geen medisch advies of diagnose."
+  }
+}

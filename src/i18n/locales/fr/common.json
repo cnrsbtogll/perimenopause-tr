@@ -1,0 +1,109 @@
+{
+  "app": {
+    "name": "Perimenopause TR",
+    "description": "Suivi de la périménopause et du bien-être féminin",
+    "version": "1.0.0",
+    "tagline": "Guide de santé féminine"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "symptoms": "Symptômes",
+    "tracker": "Suivi",
+    "report": "Rapport",
+    "settings": "Paramètres"
+  },
+  "buttons": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "start": "Commencer",
+    "continue": "Continuer",
+    "done": "Terminé",
+    "all": "Tout",
+    "delete_all": "Tout supprimer"
+  },
+  "states": {
+    "loading": "Chargement...",
+    "empty": "Aucune donnée trouvée.",
+    "error": "Une erreur est survenue.",
+    "success": "Succès"
+  },
+  "symptoms": {
+    "hot_flash": "Bouffée de chaleur",
+    "night_sweat": "Sueur nocturne",
+    "mood": "Humeur",
+    "sleep": "Sommeil",
+    "energy": "Énergie",
+    "period": "Cycle"
+  },
+  "severity": {
+    "level_1": "Très léger",
+    "level_2": "Léger",
+    "level_3": "Modéré",
+    "level_4": "Élevé",
+    "level_5": "Sévère"
+  },
+  "home": {
+    "greeting": "Bonjour,",
+    "question": "Comment vous sentez-vous aujourd'hui ?",
+    "daily_tracking": "Suivi quotidien",
+    "today_logged": "Vous avez enregistré {{count}} symptôme(s) aujourd'hui.",
+    "today_empty": "Aucun symptôme enregistré aujourd'hui.",
+    "tracking_tip": "Un suivi régulier permet de mieux comprendre vos fluctuations hormonales et vos déclencheurs.",
+    "update_records": "Mettre à jour",
+    "log_today": "Enregistrer aujourd'hui",
+    "quick_tracking": "Suivi rapide des symptômes",
+    "severity_prefix": "Intensité :",
+    "add_symptom": "+ Ajouter",
+    "daily_tip_title": "Conseil du jour",
+    "daily_tip_body": "Pour soulager les bouffées de chaleur, privilégiez les vêtements superposables, hydratez-vous abondamment et équilibrez votre consommation de caféine.",
+    "doctor_report_title": "Rapport médical & Tendances",
+    "doctor_report_sub": "Consultez vos évolutions hebdomadaires",
+    "record_notice": "Cet enregistrement sera sauvegardé pour Aujourd'hui ({{date}}).",
+    "select_severity": "Sélectionnez l'intensité (1 - 5) :",
+    "remove_today_record": "Supprimer l'enregistrement d'aujourd'hui"
+  },
+  "tracker": {
+    "today": "Aujourd'hui",
+    "past_record": "Historique",
+    "select_symptom_title": "Choisir un symptôme",
+    "select_symptom_sub": "Touchez un symptôme pour l'enregistrer ou le modifier :",
+    "no_record": "Aucun enregistrement",
+    "daily_records": "Enregistrements du jour ({{count}})",
+    "empty_title": "Aucun enregistrement à cette date",
+    "empty_sub": "Touchez les cartes ci-dessus pour ajouter vos symptômes du jour.",
+    "severity_label": "Degré d'intensité (1 - 5) :",
+    "personal_note": "Note personnelle (Optionnel) :",
+    "note_placeholder": "Ex : En soirée, après un café..."
+  },
+  "report": {
+    "days_tracked": "Jours suivis",
+    "logged_symptoms": "Symptômes enregistrés",
+    "doctor_summary_title": "Résumé pour le médecin",
+    "doctor_summary_sub": "Générez un résumé structuré de vos symptômes à partager avec votre praticien.",
+    "share_report": "Partager le rapport",
+    "symptom_distribution": "Distribution & Intensité des symptômes",
+    "symptom_distribution_sub": "Fréquence et intensité moyenne de vos symptômes les plus fréquents :",
+    "no_data": "Pas encore de données graphiques.",
+    "days_unit": "j",
+    "avg_unit": "Moy.",
+    "hrt_title": "THM & Suivi thérapeutique",
+    "hrt_body": "Si vous suivez un traitement hormonal de la ménopause (THM) ou prenez des compléments, partager ces évolutions aide votre médecin à ajuster votre posologie.",
+    "empty_share_alert": "Aucun symptôme à partager. Enregistrez d'abord des données pendant quelques jours."
+  },
+  "settings": {
+    "cloud_section": "CLOUD & CONFIDENTIALITÉ",
+    "storage_mode": "Mode de stockage",
+    "storage_sub": "Appareil local (Offline-First actif)",
+    "safe_badge": "Sécurisé",
+    "preferences": "PRÉFÉRENCES",
+    "app_language": "Langue de l'application",
+    "data_section": "GESTION DES DONNÉES",
+    "clear_records": "Effacer les données",
+    "clear_records_sub": "Supprimer tous les symptômes de l'appareil",
+    "clear_confirm_title": "Réinitialiser les données",
+    "clear_confirm_desc": "Tous vos enregistrements seront supprimés. Cette action est irréversible. Confirmer ?",
+    "clear_done_title": "Terminé",
+    "clear_done_desc": "Toutes les données ont été effacées avec succès.",
+    "disclaimer": "Cette application est destinée au suivi personnel et ne remplace pas un avis ou diagnostic médical."
+  }
+}

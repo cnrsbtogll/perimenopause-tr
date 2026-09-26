@@ -18,18 +18,18 @@ import { useSymptomRecords, SymptomType } from '../symptoms/store';
 
 const SYMPTOM_META_MAP: Record<
   SymptomType,
-  { label: string; icon: keyof typeof Ionicons.glyphMap; color: string; bgColor: string }
+  { titleKey: string; icon: keyof typeof Ionicons.glyphMap; color: string; bgColor: string }
 > = {
-  hot_flash: { label: 'Sıcak Dalga', icon: 'flame', color: theme.colors.coral, bgColor: theme.colors.coralSoft },
-  night_sweat: { label: 'Gece Teri', icon: 'water', color: theme.colors.accent, bgColor: theme.colors.accentSoft },
-  mood: { label: 'Ruh Hali Değişimi', icon: 'heart', color: '#EC4899', bgColor: '#FDF2F8' },
-  sleep: { label: 'Uyku Bozukluğu', icon: 'moon', color: theme.colors.lavender, bgColor: theme.colors.lavenderSoft },
-  energy: { label: 'Düşük Enerji / Yorgunluk', icon: 'flash', color: theme.colors.peach, bgColor: theme.colors.peachSoft },
-  period: { label: 'Döngü Düzensizliği', icon: 'calendar', color: theme.colors.mint, bgColor: theme.colors.mintSoft },
+  hot_flash: { titleKey: 'symptoms.hot_flash', icon: 'flame', color: theme.colors.coral, bgColor: theme.colors.coralSoft },
+  night_sweat: { titleKey: 'symptoms.night_sweat', icon: 'water', color: theme.colors.accent, bgColor: theme.colors.accentSoft },
+  mood: { titleKey: 'symptoms.mood', icon: 'heart', color: '#EC4899', bgColor: '#FDF2F8' },
+  sleep: { titleKey: 'symptoms.sleep', icon: 'moon', color: theme.colors.lavender, bgColor: theme.colors.lavenderSoft },
+  energy: { titleKey: 'symptoms.energy', icon: 'flash', color: theme.colors.peach, bgColor: theme.colors.peachSoft },
+  period: { titleKey: 'symptoms.period', icon: 'calendar', color: theme.colors.mint, bgColor: theme.colors.mintSoft },
 };
 
 export default function ReportScreen() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const { records } = useSymptomRecords();
 
   const totalDaysLogged = records.length;
@@ -61,16 +61,16 @@ export default function ReportScreen() {
 
   const handleShareDoctorReport = async () => {
     if (records.length === 0) {
-      Alert.alert('Bilgi', 'Paylaşılacak semptom kaydı bulunmuyor. Önce birkaç günlük kayıt ekleyin.');
+      Alert.alert(t('app.name'), t('report.empty_share_alert'));
       return;
     }
 
     const lines: string[] = [
-      '📋 PERIMENOPAUSE TR - DOKTOR GÖRÜŞME RAPORU',
-      `Tarih: ${new Date().toLocaleDateString('tr-TR')}`,
-      `Toplam Takip Edilen Gün: ${totalDaysLogged}`,
+      `📋 ${t('app.name').toUpperCase()} - ${t('report.doctor_summary_title').toUpperCase()}`,
+      `Date: ${new Date().toLocaleDateString(i18n.language || 'tr')}`,
+      `${t('report.days_tracked')}: ${totalDaysLogged}`,
       '----------------------------------------',
-      'SEMPTOM DAĞILIMI & ŞİDDETİ:',
+      `${t('report.symptom_distribution').toUpperCase()}:`,
     ];
 
     (Object.keys(stats.counts) as SymptomType[]).forEach((type) => {
@@ -78,25 +78,24 @@ export default function ReportScreen() {
       const meta = SYMPTOM_META_MAP[type];
       if (data.count > 0) {
         const avg = (data.totalSeverity / data.count).toFixed(1);
-        lines.push(`• ${meta.label}: ${data.count} gün görüldü (Ort. Şiddet: ${avg}/5)`);
+        lines.push(`• ${t(meta.titleKey)}: ${data.count} ${t('report.days_unit')} (${t('report.avg_unit')} ${avg}/5)`);
       }
     });
 
     lines.push('----------------------------------------');
-    lines.push('SON KAYITLAR:');
     records.slice(0, 5).forEach((rec) => {
       const symList = rec.symptoms
-        .map((s) => `${SYMPTOM_META_MAP[s.type]?.label || s.type} (${s.severity}/5)${s.note ? ` [${s.note}]` : ''}`)
+        .map((s) => `${t(SYMPTOM_META_MAP[s.type]?.titleKey || s.type)} (${s.severity}/5)${s.note ? ` [${s.note}]` : ''}`)
         .join(', ');
       lines.push(`${rec.date}: ${symList}`);
     });
 
-    lines.push('\n*Bu rapor Perimenopause TR mobil uygulaması tarafından hasta takibi amacıyla üretilmiştir.');
+    lines.push(`\n*${t('settings.disclaimer')}`);
 
     try {
       await Share.share({
         message: lines.join('\n'),
-        title: 'Perimenopoz Semptom Raporu',
+        title: `${t('app.name')} - ${t('report.doctor_summary_title')}`,
       });
     } catch {
       // Ignored
@@ -115,13 +114,13 @@ export default function ReportScreen() {
         <View style={styles.metricsRow}>
           <View style={styles.metricCard}>
             <Text style={styles.metricNumber}>{totalDaysLogged}</Text>
-            <Text style={styles.metricLabel}>Takip Edilen Gün</Text>
+            <Text style={styles.metricLabel}>{t('report.days_tracked')}</Text>
           </View>
           <View style={styles.metricCard}>
             <Text style={[styles.metricNumber, { color: theme.colors.accent }]}>
               {stats.totalSymptomEvents}
             </Text>
-            <Text style={styles.metricLabel}>Kayıtlı Semptom</Text>
+            <Text style={styles.metricLabel}>{t('report.logged_symptoms')}</Text>
           </View>
         </View>
 
@@ -132,9 +131,9 @@ export default function ReportScreen() {
               <Ionicons name="medkit" size={24} color={theme.colors.accent} />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={styles.doctorTitle}>Doktor Muayene Özeti</Text>
+              <Text style={styles.doctorTitle}>{t('report.doctor_summary_title')}</Text>
               <Text style={styles.doctorSubtitle}>
-                Hekiminizle paylaşabileceğiniz yapılandırılmış semptom özeti oluşturun.
+                {t('report.doctor_summary_sub')}
               </Text>
             </View>
           </View>
@@ -144,21 +143,21 @@ export default function ReportScreen() {
             activeOpacity={0.8}
           >
             <Ionicons name="share-outline" size={18} color="#FFFFFF" />
-            <Text style={styles.shareButtonText}>Raporu Paylaş / İlet</Text>
+            <Text style={styles.shareButtonText}>{t('report.share_report')}</Text>
           </TouchableOpacity>
         </View>
 
         {/* Symptom Frequency Distribution */}
-        <Text style={styles.sectionTitle}>Semptom Dağılımı ve Yoğunluk</Text>
+        <Text style={styles.sectionTitle}>{t('report.symptom_distribution')}</Text>
         <Text style={styles.sectionSubtitle}>
-          En sık karşılaştığınız durumların frekansı ve ortalama şiddetleri:
+          {t('report.symptom_distribution_sub')}
         </Text>
 
         <View style={styles.statsCard}>
           {totalDaysLogged === 0 ? (
             <View style={styles.emptyWrap}>
               <Ionicons name="bar-chart-outline" size={32} color={theme.colors.subtle} />
-              <Text style={styles.emptyText}>Henüz grafik verisi oluşmadı.</Text>
+              <Text style={styles.emptyText}>{t('report.no_data')}</Text>
             </View>
           ) : (
             (Object.keys(stats.counts) as SymptomType[]).map((type) => {
@@ -172,10 +171,10 @@ export default function ReportScreen() {
                   <View style={styles.statRowHeader}>
                     <View style={styles.statLabelWrap}>
                       <Ionicons name={meta.icon} size={16} color={meta.color} />
-                      <Text style={styles.statLabel}>{meta.label}</Text>
+                      <Text style={styles.statLabel}>{t(meta.titleKey)}</Text>
                     </View>
                     <Text style={styles.statValue}>
-                      {data.count} gün • Ort. {avg}/5
+                      {data.count} {t('report.days_unit')} • {t('report.avg_unit')} {avg}/5
                     </Text>
                   </View>
                   <View style={styles.progressBarBg}>
@@ -196,10 +195,10 @@ export default function ReportScreen() {
         <View style={styles.infoCard}>
           <View style={styles.infoCardHeader}>
             <Ionicons name="shield-checkmark-outline" size={20} color={theme.colors.mint} />
-            <Text style={styles.infoCardTitle}>HRT ve Tedavi Takibi</Text>
+            <Text style={styles.infoCardTitle}>{t('report.hrt_title')}</Text>
           </View>
           <Text style={styles.infoCardBody}>
-            Hormon Replasman Tedavisi (HRT) veya takviye edici gıda kullanıyorsanız, semptom değişimlerini doktorunuza bu verilerle sunarak doz ayarlamasında doğru karar alabilirsiniz.
+            {t('report.hrt_body')}
           </Text>
         </View>
       </ScrollView>
