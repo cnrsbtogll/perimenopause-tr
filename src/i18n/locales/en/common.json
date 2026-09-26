@@ -1,35 +1,35 @@
 {
   "app": {
     "name": "Perimenopause TR",
-    "description": "Perimenopause ve menopoz takibi",
+    "description": "Perimenopause & women wellness tracking",
     "version": "1.0.0"
   },
   "navigation": {
-    "home": "Ana Sayfa",
-    "symptoms": "Semptomlar",
-    "tracker": "Takip",
-    "report": "Rapor",
-    "settings": "Ayarlar"
+    "home": "Home",
+    "symptoms": "Symptoms",
+    "tracker": "Tracker",
+    "report": "Report",
+    "settings": "Settings"
   },
   "buttons": {
-    "save": "Kaydet",
-    "cancel": "İptal",
-    "start": "Başla",
-    "continue": "Devam et",
-    "done": "Bitti"
+    "save": "Save",
+    "cancel": "Cancel",
+    "start": "Start",
+    "continue": "Continue",
+    "done": "Done"
   },
   "states": {
-    "loading": "Yükleniyor...",
-    "empty": "Veri bulunamadı.",
-    "error": "Bir sorun oluştu.",
-    "success": "Başarılı"
+    "loading": "Loading...",
+    "empty": "No data found.",
+    "error": "An error occurred.",
+    "success": "Success"
   },
   "symptoms": {
-    "hot_flash": "Sicak dalga",
-    "night_sweat": "Gece teri",
-    "mood": "Ruh hali",
-    "sleep": "Uyku",
-    "energy": "Enerji",
-    "period": "Döngü"
+    "hot_flash": "Hot Flash",
+    "night_sweat": "Night Sweat",
+    "mood": "Mood Swing",
+    "sleep": "Sleep Quality",
+    "energy": "Energy Level",
+    "period": "Cycle"
   }
 }

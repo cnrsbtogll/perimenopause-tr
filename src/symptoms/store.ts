@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 export type SymptomType =
   | 'hot_flash'
@@ -74,28 +74,65 @@ function assertValidDate(value: string): void {
 }
 
 export function useSymptomRecords() {
-  const [records, setRecords] = React.useState<SymptomRecord[]>([]);
-  const [selectedDate, setSelectedDate] = React.useState(() =>
-    getTodayString(),
-  );
+  const [records, setRecords] = useState<SymptomRecord[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(() => getTodayString());
+
+  useEffect(() => {
+    loadRecords().then((data) => {
+      setRecords(data);
+      setLoading(false);
+    });
+  }, []);
 
   const selectedDateRecord = useMemo(() => {
-    const loadedRecords = loadRecords();
-    return getRecordForDate(loadedRecords, selectedDate);
-  }, [selectedDate]);
+    return getRecordForDate(records, selectedDate);
+  }, [records, selectedDate]);
 
-  async function saveRecord(incoming: SymptomRecord): Promise<void> {
+  const saveRecord = useCallback(async (incoming: SymptomRecord): Promise<void> => {
     const nextRecords = saveSymptomRecord(records, incoming);
     setRecords(nextRecords);
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(nextRecords));
-  }
+  }, [records]);
+
+  const addOrUpdateSymptom = useCallback(
+    async (
+      date: string,
+      symptom: { type: SymptomType; severity: number; note?: string },
+    ): Promise<void> => {
+      const existingRecord = getRecordForDate(records, date);
+      const symptomId = `${symptom.type}-${Date.now()}`;
+      const entry: SymptomEntry = {
+        id: symptomId,
+        type: symptom.type,
+        severity: symptom.severity,
+        note: symptom.note || '',
+      };
+
+      const otherSymptoms = (existingRecord?.symptoms || []).filter(
+        (s) => s.type !== symptom.type,
+      );
+      const updatedRecord: SymptomRecord = {
+        id: existingRecord?.id || `rec-${date}`,
+        date,
+        symptoms: [...otherSymptoms, entry],
+      };
+
+      const nextRecords = saveSymptomRecord(records, updatedRecord);
+      setRecords(nextRecords);
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(nextRecords));
+    },
+    [records],
+  );
 
   return {
     records,
+    loading,
     selectedDate,
     selectedDateRecord,
     setSelectedDate,
     saveRecord,
+    addOrUpdateSymptom,
   };
 }
 
@@ -146,7 +183,7 @@ function isSymptomEntry(value: unknown): value is SymptomEntry {
   );
 }
 
-function getTodayString(): string {
+export function getTodayString(): string {
   const date = new Date();
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

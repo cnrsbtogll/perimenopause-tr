@@ -8,6 +8,7 @@ import {
 } from '../src/symptoms/store';
 
 const hotFlash: SymptomEntry = {
+  id: 'hf-1',
   type: 'hot_flash',
   severity: 3,
   note: 'Öğleden sonra',

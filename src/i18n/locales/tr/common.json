@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Perimenopause TR",
-    "description": "Perimenopoz ve kadin saglik takibi",
+    "description": "Perimenopoz ve kadın sağlık takibi",
     "version": "1.0.0"
   },
   "navigation": {
@@ -13,23 +13,23 @@
   },
   "buttons": {
     "save": "Kaydet",
-    "cancel": "Iptal",
-    "start": "Basla",
-    "continue": "Devam et",
-    "done": "Bitti"
+    "cancel": "İptal",
+    "start": "Başla",
+    "continue": "Devam Et",
+    "done": "Tamamlandı"
   },
   "states": {
-    "loading": "Yukleniyor...",
-    "empty": "Veri bulunamadi.",
-    "error": "Bir sorun olustu.",
-    "success": "Basarili"
+    "loading": "Yükleniyor...",
+    "empty": "Veri bulunamadı.",
+    "error": "Bir sorun oluştu.",
+    "success": "Başarılı"
   },
   "symptoms": {
-    "hot_flash": "Sicak dalga",
-    "night_sweat": "Gece teri",
-    "mood": "Ruh hali",
+    "hot_flash": "Sıcak Dalga",
+    "night_sweat": "Gece Teri",
+    "mood": "Ruh Hali",
     "sleep": "Uyku",
     "energy": "Enerji",
-    "period": "Dongu"
+    "period": "Döngü"
   }
 }
