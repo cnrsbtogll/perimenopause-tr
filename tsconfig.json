@@ -8,7 +8,9 @@
     "noEmit": true,
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "baseUrl": ".",
     "esModuleInterop": true,
@@ -18,6 +20,12 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["app/**/*", "src/**/*"],
-  "exclude": ["node_modules/**/*"]
+  "include": [
+    "app/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules/**/*"
+  ],
+  "extends": "expo/tsconfig.base"
 }
