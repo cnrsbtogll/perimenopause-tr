@@ -1,0 +1,35 @@
+{
+  "app": {
+    "name": "Perimenopause TR",
+    "description": "Perimenopoz ve kadin saglik takibi",
+    "version": "1.0.0"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "symptoms": "Semptomlar",
+    "tracker": "Takip",
+    "report": "Rapor",
+    "settings": "Ayarlar"
+  },
+  "buttons": {
+    "save": "Kaydet",
+    "cancel": "Iptal",
+    "start": "Basla",
+    "continue": "Devam et",
+    "done": "Bitti"
+  },
+  "states": {
+    "loading": "Yukleniyor...",
+    "empty": "Veri bulunamadi.",
+    "error": "Bir sorun olustu.",
+    "success": "Basarili"
+  },
+  "symptoms": {
+    "hot_flash": "Sicak dalga",
+    "night_sweat": "Gece teri",
+    "mood": "Ruh hali",
+    "sleep": "Uyku",
+    "energy": "Enerji",
+    "period": "Dongu"
+  }
+}

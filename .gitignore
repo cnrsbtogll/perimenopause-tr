@@ -1,0 +1,39 @@
+# Learn more about ignoring files: https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# These paths are typical for Node.js projects, but feel free to adjust as needed.
+
+# Dependencies
+dependencies/
+node_modules/
+
+# Expo
+dist/
+web-build/
+*.log
+
+# Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Local env files
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Generated native folders
+/ios/
+/android/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+*.pem
