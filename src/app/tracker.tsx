@@ -7,6 +7,10 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -232,7 +236,13 @@ export default function TrackerScreen() {
         animationType="slide"
         onRequestClose={() => setActiveModalSymptom(null)}
       >
-        <View style={styles.modalOverlay}>
+        <KeyboardAvoidingView
+          style={styles.modalOverlay}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.modalBackdropTouch} />
+          </TouchableWithoutFeedback>
           <View style={styles.modalCard}>
             <View style={styles.modalHeader}>
               <View style={styles.modalHeaderTitleWrap}>
@@ -296,6 +306,8 @@ export default function TrackerScreen() {
               value={symptomNote}
               onChangeText={setSymptomNote}
               maxLength={120}
+              returnKeyType="done"
+              onSubmitEditing={Keyboard.dismiss}
             />
 
             <View style={styles.modalActions}>
@@ -308,7 +320,7 @@ export default function TrackerScreen() {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     </SafeAreaView>
   );
@@ -488,6 +500,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'flex-end',
+  },
+  modalBackdropTouch: {
+    flex: 1,
   },
   modalCard: {
     backgroundColor: theme.colors.card,
