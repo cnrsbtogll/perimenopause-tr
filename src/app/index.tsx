@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import '../i18n/i18n';
 import theme from '../constants/theme';
-import { useSymptomRecords, SymptomType } from '../symptoms/store';
+import { useSymptomRecords, SymptomType, getTodayString } from '../symptoms/store';
 
 const QUICK_SYMPTOMS: Array<{
   type: SymptomType;
@@ -23,12 +23,42 @@ const QUICK_SYMPTOMS: Array<{
   { type: 'energy', titleKey: 'symptoms.energy', icon: 'flash', color: theme.colors.peach, bgColor: theme.colors.peachSoft },
 ];
 
+const SEVERITY_LEVELS = [
+  { level: 1, label: 'Hafif' },
+  { level: 2, label: 'Düşük' },
+  { level: 3, label: 'Orta' },
+  { level: 4, label: 'Yüksek' },
+  { level: 5, label: 'Şiddetli' },
+];
+
 export default function HomeScreen() {
   const { t, i18n } = useTranslation('common');
   const router = useRouter();
-  const { selectedDateRecord } = useSymptomRecords();
+  const { selectedDateRecord, addOrUpdateSymptom, saveRecord } = useSymptomRecords();
+
+  const [activeQuickSymptom, setActiveQuickSymptom] = useState<typeof QUICK_SYMPTOMS[0] | null>(null);
 
   const loggedSymptomsCount = selectedDateRecord?.symptoms.length || 0;
+
+  const handleSelectSeverity = async (level: number) => {
+    if (!activeQuickSymptom) return;
+    const today = getTodayString();
+    await addOrUpdateSymptom(today, {
+      type: activeQuickSymptom.type,
+      severity: level,
+    });
+    setActiveQuickSymptom(null);
+  };
+
+  const handleRemoveSymptom = async () => {
+    if (!activeQuickSymptom || !selectedDateRecord) return;
+    const filtered = selectedDateRecord.symptoms.filter((s) => s.type !== activeQuickSymptom.type);
+    await saveRecord({
+      ...selectedDateRecord,
+      symptoms: filtered,
+    });
+    setActiveQuickSymptom(null);
+  };
 
   const todayFormatted = React.useMemo(() => {
     try {
@@ -104,7 +134,7 @@ export default function HomeScreen() {
                   styles.quickCard,
                   isLogged && { borderColor: item.color, borderWidth: 1.5 },
                 ]}
-                onPress={() => router.push('/tracker')}
+                onPress={() => setActiveQuickSymptom(item)}
                 activeOpacity={0.7}
               >
                 <View style={[styles.iconCircle, { backgroundColor: item.bgColor }]}>
@@ -154,6 +184,102 @@ export default function HomeScreen() {
           <Ionicons name="chevron-forward" size={20} color={theme.colors.subtle} />
         </TouchableOpacity>
       </ScrollView>
+
+      {/* Quick Severity Sheet Modal */}
+      <Modal
+        visible={Boolean(activeQuickSymptom)}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setActiveQuickSymptom(null)}
+      >
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          activeOpacity={1}
+          onPress={() => setActiveQuickSymptom(null)}
+        >
+          <TouchableOpacity
+            style={styles.modalCard}
+            activeOpacity={1}
+            onPress={(e) => e.stopPropagation()}
+          >
+            <View style={styles.modalHeader}>
+              <View style={styles.modalHeaderTitleWrap}>
+                <Ionicons
+                  name={activeQuickSymptom?.icon || 'sparkles'}
+                  size={24}
+                  color={activeQuickSymptom?.color || theme.colors.accent}
+                />
+                <Text style={styles.modalTitle}>
+                  {activeQuickSymptom ? t(activeQuickSymptom.titleKey) : ''}
+                </Text>
+              </View>
+              <TouchableOpacity onPress={() => setActiveQuickSymptom(null)}>
+                <Ionicons name="close" size={24} color={theme.colors.muted} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.todayNoticeBanner}>
+              <Ionicons name="calendar-outline" size={14} color={theme.colors.accent} />
+              <Text style={styles.todayNoticeText}>
+                Bu kayıt <Text style={styles.todayNoticeBold}>Bugün ({todayFormatted})</Text> için günlüğünüze işlenecektir.
+              </Text>
+            </View>
+
+            <Text style={styles.modalSubtitle}>Şiddet derecesini seçin (1 - 5):</Text>
+
+            <View style={styles.severityRow}>
+              {SEVERITY_LEVELS.map(({ level, label }) => {
+                const isSelected =
+                  selectedDateRecord?.symptoms.find((s) => s.type === activeQuickSymptom?.type)
+                    ?.severity === level;
+
+                return (
+                  <TouchableOpacity
+                    key={level}
+                    style={[
+                      styles.severityBtn,
+                      isSelected && {
+                        backgroundColor: activeQuickSymptom?.color || theme.colors.accent,
+                        borderColor: activeQuickSymptom?.color || theme.colors.accent,
+                      },
+                    ]}
+                    onPress={() => handleSelectSeverity(level)}
+                    activeOpacity={0.7}
+                  >
+                    <Text
+                      style={[
+                        styles.severityNum,
+                        isSelected && { color: '#FFFFFF' },
+                      ]}
+                    >
+                      {level}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.severityLabel,
+                        isSelected && { color: '#FFFFFF' },
+                      ]}
+                    >
+                      {label}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            {selectedDateRecord?.symptoms.some((s) => s.type === activeQuickSymptom?.type) ? (
+              <TouchableOpacity
+                style={styles.removeBtn}
+                onPress={handleRemoveSymptom}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="trash-outline" size={16} color={theme.colors.coral} />
+                <Text style={styles.removeBtnText}>Bugünkü Kaydı Kaldır</Text>
+              </TouchableOpacity>
+            ) : null}
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -363,5 +489,95 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: theme.colors.muted,
     marginTop: 2,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'flex-end',
+  },
+  modalCard: {
+    backgroundColor: theme.colors.card,
+    borderTopLeftRadius: theme.radius.xl,
+    borderTopRightRadius: theme.radius.xl,
+    padding: theme.spacing.lg,
+    paddingBottom: theme.spacing.xl * 1.5,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.sm,
+  },
+  modalHeaderTitleWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: theme.colors.text,
+  },
+  todayNoticeBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: theme.colors.accentSoft,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: theme.radius.sm,
+    marginBottom: theme.spacing.sm,
+  },
+  todayNoticeText: {
+    fontSize: 12,
+    color: theme.colors.accent,
+    flex: 1,
+  },
+  todayNoticeBold: {
+    fontWeight: '700',
+  },
+  modalSubtitle: {
+    fontSize: 13,
+    color: theme.colors.muted,
+    marginBottom: theme.spacing.md,
+  },
+  severityRow: {
+    flexDirection: 'row',
+    gap: theme.spacing.xs,
+    marginBottom: theme.spacing.md,
+  },
+  severityBtn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: theme.radius.md,
+    borderWidth: 1,
+    borderColor: theme.colors.cardBorder,
+    backgroundColor: theme.colors.background,
+  },
+  severityNum: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: theme.colors.text,
+  },
+  severityLabel: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: theme.colors.muted,
+    marginTop: 2,
+  },
+  removeBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 10,
+    marginTop: theme.spacing.xs,
+  },
+  removeBtnText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: theme.colors.coral,
   },
 });
