@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import 'i18next';
 import '../i18n/i18n';
 import { Ionicons } from '@expo/vector-icons';
-import theme from '../../constants/theme';
+import theme from '../constants/theme';
 
 const SYMPTOM_TYPES = [
   { key: 'hot_flash', icon: 'thermometer' },

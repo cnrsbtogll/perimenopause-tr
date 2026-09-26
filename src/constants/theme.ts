@@ -21,3 +21,5 @@ export const THEME = {
     lg: 16,
   },
 } as const;
+
+export default THEME;

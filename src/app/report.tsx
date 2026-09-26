@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import 'i18next';
 import '../i18n/i18n';
 import { Ionicons } from '@expo/vector-icons';
-import theme from '../../constants/theme';
+import theme from '../constants/theme';
 
 const REPORT_CARDS = [
   { key: 'weekly', title: 'Weekly Summary', icon: 'stats-chart' },

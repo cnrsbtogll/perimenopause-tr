@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 import 'i18next';
 import '../i18n/i18n';
-import theme from '../../constants/theme';
+import theme from '../constants/theme';
 
 export default function HomeScreen() {
   const { t } = useTranslation('common');

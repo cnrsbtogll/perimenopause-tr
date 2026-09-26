@@ -1,13 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
-  const insets = useSafeAreaInsets();
-
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Perimenopause TR</Text>
         <Text style={styles.subtitle}>Kadin Saglik Takip</Text>
@@ -35,6 +34,7 @@ export default function App() {
       </View>
       <StatusBar style="dark" />
     </SafeAreaView>
+  </SafeAreaProvider>
   );
 }
 
